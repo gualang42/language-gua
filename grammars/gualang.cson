@@ -1,0 +1,145 @@
+'scopeName': 'source.gua'
+'name': 'gualang'
+'fileTypes': ['gua']
+'patterns': [
+    {
+        'match': '(?<!\\.)\\b(log|super|import|importPython|str|math)(?=\\()'
+        'name': 'support.function.builtin.gua'
+    }
+    {
+        'match': '#mark.*'
+        'name': 'support.function.builtin.gua'
+    }
+    {
+        'captures':
+            '1':
+                'name': 'entity.name.function.gua'
+            '2':
+                'name': 'keyword.operator.gua'
+            '3':
+                'name': 'keyword.gua'
+        'match': '\\b(\\w+\\s+)(=)(\\s+function)'
+        'name': 'entity.name.function.gua'
+    }
+    {
+        'match': '\\b(for|in|if|else|var|const|con|function|break|continue|return|while|and|or|not|(class(?!\\.)))\\b'
+        'name': 'keyword.gua'
+    }
+    {
+        'match': '\\b(true|false)(?!\\s*:)\\b'
+        'name': 'constant.language.boolean.gua'
+    }
+    {
+        'match': '\\b(null)(?!\\s*:)\\b'
+        'name': 'constant.language.gua'
+    }
+    {
+        'match': '\\b[0-9]+\\b'
+        'name': 'constant.language.numeric.gua'
+    }
+    {
+        'match': '\\b(?i:(0b[01]+))',
+        'name': 'constant.numeric.integer.binary.gua'
+    }
+    {
+        'match': '\\b(?i:(0x\\h*))'
+        'name': 'constant.numeric.integer.hexadecimal.gua'
+    }
+  {
+        'begin': '/\\*'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.begin.js'
+        'end': '\\*/'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.end.js'
+        'name': 'comment.block.gua'
+      }
+    {
+        'match': '//.*(\\r|\\n)*'
+        'name': 'comment.gua'
+    }
+    {
+      'match': '(?:(?<=\\.{3})|(?<!\\.)\\b)(?<!\\$)(this|class)(?!\\s*:|\\$)\\b'
+      'name': 'variable.language.gua'
+    }
+    {
+      'match': '\\b([A-Z][^\\.\\s]+)\\b'
+      'name': 'entity.name.class.js'
+    }
+  {
+    'begin': '"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.gua'
+    'end': '"'
+    'endCaptures':
+        '1':
+          'name': 'punctuation.definition.string.end.gua'
+    'name': 'string.quoted.double.protobuf'
+    'patterns': [
+      {
+        'match': '\\\\.'
+        'name': 'constant.character.escape.gua'
+      }
+    ]
+  }
+    {
+      'begin': "'"
+      'beginCaptures':
+        '0':
+          'name': 'punctuation.definition.string.begin.gua'
+      'end': "'"
+      'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.gua'
+      'name': 'string.quoted.double.protobuf'
+      'patterns': [
+        {
+          'match': '\\\\.'
+          'name': 'constant.character.escape.gua'
+        }
+      ]
+    }
+      {
+        'begin': '(`)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.gua'
+        'end': '(`)'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.gua'
+        'name': 'string.quoted.double.protobuf'
+        'patterns': [
+          {
+            'match': '\\\\.'
+            'name': 'constant.character.escape.gua'
+          }
+        ]
+      }
+  {
+    # functionCall(arg1, "arg2", [...])
+    'begin': '([\\w$]+)\\s*(?=\\()'
+    'beginCaptures':
+      '1':
+        'patterns': [
+          {
+            'match': "[a-zA-Z_$][\\w$]*"
+            'name': 'entity.name.function.gua'
+          }
+          {
+            'match': '\\d[\\w$]*'
+            'name': 'invalid.illegal.identifier.gua'
+          }
+        ]
+    'end': '(?<=\\))'
+    'name': 'meta.function-call.js'
+    'patterns': [
+      {
+        'include': 'source.gua'
+      }
+    ]
+    }
+]
